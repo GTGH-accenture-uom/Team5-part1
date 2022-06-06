@@ -9,14 +9,12 @@ public class Timeslot {
     private LocalTime endMinute;
     private Doctor doctor;
 
-
     public Timeslot(LocalDateTime localDateTime, LocalTime startMinute, LocalTime endMinute, Doctor doctor) {
         this.localDateTime = localDateTime;
         this.startMinute = startMinute;
         this.endMinute = endMinute;
         this.doctor = doctor;
     }
-
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }

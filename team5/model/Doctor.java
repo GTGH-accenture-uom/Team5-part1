@@ -10,7 +10,6 @@ public class Doctor {
     private String surname;
     private List<Timeslot> timeslots = new ArrayList<>();
 
-
     public Doctor(String amka, String name, String surname) {
         this.amka = amka;
         this.name = name;

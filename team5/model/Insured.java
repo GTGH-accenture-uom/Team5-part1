@@ -3,7 +3,6 @@ package team5.model;
 import java.time.LocalDate;
 
 public class Insured {
-
     private String afm;
     private String amka;
     private String name;
@@ -11,15 +10,14 @@ public class Insured {
     private String surname;
     private String email;
 
-    public Insured(String afm,String amka,String name,LocalDate birthdate,String surname,String email) {
+    public Insured(String afm, String amka, String name, LocalDate birthdate, String surname, String email) {
         this.afm = afm;
         this.amka = amka;
         this.name = name;
-        this.birthdate=birthdate;
-        this.surname=surname;
-        this.email=email;
+        this.birthdate = birthdate;
+        this.surname = surname;
+        this.email = email;
     }
-
     public String getAfm() {
         return afm;
     }
