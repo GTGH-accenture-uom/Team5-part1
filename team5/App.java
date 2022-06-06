@@ -6,5 +6,6 @@ public class App {
         System.out.println("Check");
 
             System.out.println("Check2");
+         System.out.println("Check3");
     }
 }
