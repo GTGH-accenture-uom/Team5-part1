@@ -65,8 +65,8 @@ public class VaccinationCenter {
         this.vaccinations = vaccinations;
     }
 
-    public void addTimeSlot(TimeSlot timeSlot) {
-        freeTimeSlots.add(timeSlot);
+    public void addTimeSlot(Timeslot timeslot) {
+        freeTimeSlots.add(timeslot);
     }
 
     public void addReservation(Reservation reservation) {
