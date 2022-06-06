@@ -1,12 +1,14 @@
 package team5;
 
+import team5.model.Timeslot;
+
+import java.time.LocalDateTime;
+
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Check");
-
-            System.out.println("Check2");
-         System.out.println("Check3");
-         System.out.println("Check4");
+        //Timeslot timeslot = new Timeslot(LocalDateTime.now());
+       // System.out.println(timeslot);
+        //System.out.println(LocalDateTime.of(2018,8,23,18,30));
     }
 }
