@@ -5,14 +5,12 @@ import java.time.LocalTime;
 
 public class Timeslot {
     private LocalDateTime localDateTime;
-    private LocalTime startMinute;
-    private LocalTime endMinute;
+    private int duration;
     private Doctor doctor;
 
-    public Timeslot(LocalDateTime localDateTime, LocalTime startMinute, LocalTime endMinute, Doctor doctor) {
+    public Timeslot(LocalDateTime localDateTime, int duration, Doctor doctor) {
         this.localDateTime = localDateTime;
-        this.startMinute = startMinute;
-        this.endMinute = endMinute;
+        this.duration = duration;
         this.doctor = doctor;
     }
     public LocalDateTime getLocalDateTime() {
@@ -23,20 +21,12 @@ public class Timeslot {
         this.localDateTime = localDateTime;
     }
 
-    public LocalTime getStartMinute() {
-        return startMinute;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setStartMinute(LocalTime startMinute) {
-        this.startMinute = startMinute;
-    }
-
-    public LocalTime getEndMinute() {
-        return endMinute;
-    }
-
-    public void setEndMinute(LocalTime endMinute) {
-        this.endMinute = endMinute;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public Doctor getDoctor() {
@@ -51,8 +41,7 @@ public class Timeslot {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Timeslot{");
         sb.append("localDateTime=").append(localDateTime);
-        sb.append(", startMinute=").append(startMinute);
-        sb.append(", endMinute=").append(endMinute);
+        sb.append(", duration=").append(duration);
         sb.append(", doctor=").append(doctor);
         sb.append('}');
         return sb.toString();

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Vaccination {
+
     private String vacc_brand;
     private Insured insured;
     private Doctor doctor;

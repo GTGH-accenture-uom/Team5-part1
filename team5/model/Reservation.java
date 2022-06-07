@@ -8,7 +8,6 @@ public class Reservation {
     public Reservation(Insured insured, Timeslot timeslot) {
         this.insured = insured;
         this.timeslot = timeslot;
-
     }
 
     public Insured getInsured() {

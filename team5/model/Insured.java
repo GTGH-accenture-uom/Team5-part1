@@ -3,6 +3,7 @@ package team5.model;
 import java.time.LocalDate;
 
 public class Insured {
+
     private String afm;
     private String amka;
     private String name;

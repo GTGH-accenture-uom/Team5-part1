@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VaccinationCenter {
+
     private String code;
     private String city;
     private String address;
