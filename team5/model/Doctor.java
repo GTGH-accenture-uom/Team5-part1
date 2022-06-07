@@ -9,6 +9,7 @@ public class Doctor {
     private String name;
     private String surname;
     private List<Timeslot> timeslots = new ArrayList<>();
+    private List<Vaccination> vaccinations = new ArrayList<>();
 
     public Doctor(String amka, String name, String surname) {
         this.amka = amka;
@@ -44,12 +45,39 @@ public class Doctor {
         return timeslots;
     }
 
+
     public void setTimeslots(List<Timeslot> timeslots) {
         this.timeslots = timeslots;
     }
 
-    public void addTimeslot(Timeslot timeslot){
+    public void addTimeslot(Timeslot timeslot) {
         timeslots.add(timeslot);
+    }
+
+    public List<Vaccination> getVaccinations() {
+        return vaccinations;
+    }
+
+    public void setVaccinations(List<Vaccination> vaccinations) {
+        this.vaccinations = vaccinations;
+    }
+
+    public void addVaccination(Vaccination vaccination) {
+        vaccinations.add(vaccination);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return amka.equals(doctor.amka);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amka);
     }
 
     @Override

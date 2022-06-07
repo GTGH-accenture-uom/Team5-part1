@@ -12,7 +12,7 @@ public class Vaccination {
     private LocalDateTime expirationDate;
 
 
-    public Vaccination(String vacc_brand,Insured insured,Doctor doctor, LocalDateTime vaccinationDate, LocalDateTime expirationDate) {
+    public Vaccination(String vacc_brand,Insured insured,Doctor doctor, LocalDateTime vaccinationDate,LocalDateTime expirationDate) {
         this.vacc_brand = vacc_brand;
         this.insured = insured;
         this.doctor = doctor;

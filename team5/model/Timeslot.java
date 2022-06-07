@@ -1,39 +1,39 @@
 package team5.model;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.Objects;
 
 public class Timeslot {
 
-    private LocalDateTime localDateTime;
-    private LocalDateTime endLocalDateTime;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
     private int duration;
     private Doctor doctor;
 
-    public Timeslot(LocalDateTime localDateTime, int duration, Doctor doctor){
-        this.localDateTime = localDateTime;
+    public Timeslot(LocalDateTime startDateTime, int duration, Doctor doctor){
+        this.startDateTime = startDateTime;
         this.duration = duration;
-        this.endLocalDateTime = localDateTime.plusMinutes(duration);
+        this.endDateTime = startDateTime.plusMinutes(duration);
         this.doctor = doctor;
     }
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public LocalDateTime getEndLocalDateTime() {
-        return endLocalDateTime;
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
 
-    public void setEndLocalDateTime(LocalDateTime endLocalDateTime) {
-        this.endLocalDateTime = endLocalDateTime;
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public void setDuration(int duration) {
@@ -49,10 +49,23 @@ public class Timeslot {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Timeslot timeslot = (Timeslot) o;
+        return duration == timeslot.duration && startDateTime.equals(timeslot.startDateTime) && endDateTime.equals(timeslot.endDateTime) && doctor.equals(timeslot.doctor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startDateTime, endDateTime, duration, doctor);
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Timeslot{");
-        sb.append("localDateTime=").append(localDateTime);
-        sb.append(", endLocalDateTime=").append(endLocalDateTime);
+        sb.append("localDateTime=").append(startDateTime);
+        sb.append(", endLocalDateTime=").append(endDateTime);
         sb.append(", duration=").append(duration);
         sb.append(", doctor's FirstName=").append(doctor.getName());
         sb.append(",doctor's SurName=").append(doctor.getSurname());
