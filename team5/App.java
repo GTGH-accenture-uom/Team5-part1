@@ -27,6 +27,6 @@ public class App {
         Insured insured14 = new Insured("211111177", "32202723333", "xrisa", LocalDate.of(2017,6,20), "papas", "mail228@mail.gr");
         Insured insured15 = new Insured("211111179", "32228223309", "alexis", LocalDate.of(2038,8,23), "nakis", "mail238@mail.gr");
         System.out.println(insured1);
-
+        System.out.println("dd");
     }
 }
