@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VaccinationCenter {
-
     private String code;
     private String city;
     private String address;
-    private List<Timeslot> freeTimeSlots = new ArrayList<>();
+    private List<Timeslot> timeslots = new ArrayList<>();
     private List<Reservation> reservations = new ArrayList<>();
     private List<Vaccination> vaccinations = new ArrayList<>();
 
@@ -42,12 +41,12 @@ public class VaccinationCenter {
         this.address = address;
     }
 
-    public List<Timeslot> getFreeTimeSlots() {
-        return freeTimeSlots;
+    public List<Timeslot> getTimeslots() {
+        return timeslots;
     }
 
-    public void setFreeTimeSlots(List<Timeslot> freeTimeSlots) {
-        this.freeTimeSlots = freeTimeSlots;
+    public void setTimeslots(List<Timeslot> timeslots) {
+        this.timeslots = timeslots;
     }
 
     public List<Reservation> getReservations() {
@@ -67,7 +66,7 @@ public class VaccinationCenter {
     }
 
     public void addTimeSlot(Timeslot timeslot) {
-        freeTimeSlots.add(timeslot);
+        timeslots.add(timeslot);
     }
 
     public void addReservation(Reservation reservation) {
@@ -84,7 +83,7 @@ public class VaccinationCenter {
         sb.append("code='").append(code).append('\'');
         sb.append(", city='").append(city).append('\'');
         sb.append(", address='").append(address).append('\'');
-        sb.append(", freeTimeSlots=").append(freeTimeSlots);
+        sb.append(", freeTimeSlots=").append(timeslots);
         sb.append(", reservations=").append(reservations);
         sb.append(", vaccinations=").append(vaccinations);
         sb.append('}');

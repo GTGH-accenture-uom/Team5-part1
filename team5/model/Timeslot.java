@@ -7,15 +7,19 @@ public class Timeslot {
 
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
+    private boolean isAvailable;
     private int duration;
     private Doctor doctor;
 
-    public Timeslot(LocalDateTime startDateTime, int duration, Doctor doctor){
+
+    public Timeslot(LocalDateTime startDateTime, int duration, Doctor doctor) {
         this.startDateTime = startDateTime;
+        this.isAvailable = true;
         this.duration = duration;
         this.endDateTime = startDateTime.plusMinutes(duration);
         this.doctor = doctor;
     }
+
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
@@ -32,6 +36,14 @@ public class Timeslot {
         return endDateTime;
     }
 
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
     public void setEndDateTime(LocalDateTime endDateTime) {
         this.endDateTime = endDateTime;
     }
@@ -39,6 +51,7 @@ public class Timeslot {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
 
     public Doctor getDoctor() {
         return doctor;

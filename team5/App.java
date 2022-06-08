@@ -12,7 +12,6 @@ import java.util.List;
 public class App {
 
     private static final VaccinationCenterService vaccinationCenterService = new VaccinationCenterService();
-    private static final VaccinationService vaccinationService = new VaccinationService();
     private static final DoctorService doctorService = new DoctorService();
 
     public static void main(String[] args) {
@@ -72,7 +71,10 @@ public class App {
         List<Timeslot> timeslotListCenter1 =
                 Arrays.asList(timeslot1center1, timeslot2center1, timeslot3center1, timeslot4center1,
                         timeslot5center1, timeslot6center1, timeslot7center1, timeslot8center1, timeslot9center1, timeslot10center1);
-        vaccCenter1.setFreeTimeSlots(timeslotListCenter1);
+
+
+        vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter1, vaccCenter1);
+
 
         //timeslots for vaccination center2
         Timeslot timeslot1center2 = new Timeslot(LocalDateTime.of(2022, 6, 23, 18, 30), 20, doctor3);
@@ -96,32 +98,33 @@ public class App {
         Timeslot timeslot10center2 = new Timeslot(timeslot9center2.getEndDateTime(), 15, doctor4);
         doctor4.addTimeslot(timeslot10center2);
 
+
+
         List<Timeslot> timeslotListCenter2 = Arrays.asList(timeslot1center2, timeslot2center2, timeslot3center2, timeslot4center2,
                 timeslot5center2, timeslot6center2, timeslot7center2, timeslot8center2, timeslot9center2, timeslot10center2);
-        System.out.println(timeslotListCenter1);
-        vaccCenter2.setFreeTimeSlots(timeslotListCenter2);
+
+        vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter2,vaccCenter2);
+
 
         //Reservations for Center1
-
-        Reservation reservation1 = vaccinationCenterService.makeReservation(insured1, timeslot1center1, vaccCenter1);
-        Reservation reservation2 = vaccinationCenterService.makeReservation(insured2, timeslot2center1, vaccCenter1);
-        Reservation reservation3 = vaccinationCenterService.makeReservation(insured3, timeslot3center1, vaccCenter1);
-        Reservation reservation4 = vaccinationCenterService.makeReservation(insured4, timeslot4center1, vaccCenter1);
+        vaccinationCenterService.makeReservation(insured1, timeslot1center1, vaccCenter1);
+        vaccinationCenterService.makeReservation(insured2, timeslot2center1, vaccCenter1);
+        vaccinationCenterService.makeReservation(insured3, timeslot3center1, vaccCenter1);
+        vaccinationCenterService.makeReservation(insured4, timeslot4center1, vaccCenter1);
 
         //Reservations for Center2
-        Reservation reservation5 = vaccinationCenterService.makeReservation(insured5, timeslot1center2, vaccCenter2);
-        Reservation reservation6 = vaccinationCenterService.makeReservation(insured6, timeslot2center2, vaccCenter2);
-        Reservation reservation7 = vaccinationCenterService.makeReservation(insured7, timeslot3center2, vaccCenter2);
-        Reservation reservation8 = vaccinationCenterService.makeReservation(insured8, timeslot4center2, vaccCenter2);
+        vaccinationCenterService.makeReservation(insured5, timeslot1center2, vaccCenter2);
+        vaccinationCenterService.makeReservation(insured6, timeslot2center2, vaccCenter2);
+        vaccinationCenterService.makeReservation(insured7, timeslot3center2, vaccCenter2);
+        vaccinationCenterService.makeReservation(insured8, timeslot4center2, vaccCenter2);
 
 
-        vaccinationCenterService.vaccinate("Pfizer", 2, reservation1, vaccCenter1);
-        vaccinationCenterService.vaccinate("Moderna", 3, reservation2, vaccCenter1);
-        vaccinationCenterService.vaccinate("Pfizer", 2, reservation3, vaccCenter1);
-        vaccinationCenterService.vaccinate("Pfizer", 2, reservation4, vaccCenter1);
-        vaccinationCenterService.vaccinate("Pfizer", 2, reservation5, vaccCenter2);
-        vaccinationCenterService.vaccinate("Pfizer", 2, reservation6, vaccCenter2);
-
+        vaccinationCenterService.vaccinate("Pfizer", 2, insured1, vaccCenter1);
+        // vaccinationCenterService.vaccinate("Moderna", 3, reservation2, vaccCenter1);
+        //  vaccinationCenterService.vaccinate("Pfizer", 2, reservation3, vaccCenter1);
+        // vaccinationCenterService.vaccinate("Pfizer", 2, reservation4, vaccCenter1);
+        //  vaccinationCenterService.vaccinate("Pfizer", 2, reservation5, vaccCenter2);
+        //  vaccinationCenterService.vaccinate("Pfizer", 2, reservation6, vaccCenter2);
 
 
         vaccinationCenterService.displayReservations(vaccCenter1);

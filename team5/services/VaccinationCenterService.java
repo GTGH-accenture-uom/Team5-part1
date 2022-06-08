@@ -1,13 +1,53 @@
 package team5.services;
 
 import team5.model.*;
-
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class VaccinationCenterService {
+
+    private final List<Timeslot> timeslots = new ArrayList<>();
+
+    private final List<VaccinationCenter> totalVaccinationCenters = new ArrayList<>();
+
+
+    public void createVaccinationCenter(String code, String city, String address) {
+        VaccinationCenter vaccinationCenter = new VaccinationCenter(code, city, address);
+        totalVaccinationCenters.add(vaccinationCenter);
+    }
+
+    public void addTimeslotsToVaccinationCenter(List<Timeslot> timeslots, VaccinationCenter vaccinationCenter) {
+        for (Timeslot t : timeslots) {
+            if (!vaccinationCenter.getTimeslots().contains(t)) {
+                vaccinationCenter.addTimeSlot(t);
+            }
+        }
+    }
+
+    public void makeReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
+        Reservation reservation = new Reservation(insured, timeSlot);
+        vaccinationCenter.addReservation(reservation);
+    }
+
+    public void vaccinate(String brand, int yearsToExpire, Insured insured, VaccinationCenter vaccinationCenter) {
+        Reservation foundReservation = findReservationByInsuredAmka(insured, vaccinationCenter);
+        if (foundReservation != null) {
+            Insured insuredToVaccinate = foundReservation.getInsured();
+            Doctor doctor = foundReservation.getTimeslot().getDoctor();
+            LocalDateTime startDateTime = foundReservation.getTimeslot().getStartDateTime();
+            LocalDateTime expirationDate = startDateTime.plusYears(yearsToExpire);
+            Vaccination vaccination = new Vaccination(brand, insuredToVaccinate, doctor, startDateTime, expirationDate);
+            System.out.println("Insured with afm " + insuredToVaccinate.getAfm() + " got vaccinated");
+            //Add record of vaccination to vaccination center
+            vaccinationCenter.addVaccination(vaccination);
+            //Add vaccination in doctor's vaccinations list
+            doctor.addVaccination(vaccination);
+        } else {
+            System.err.println("This Vaccination cannot be made because this reservation cannot be found");
+        }
+
+    }
 
     public void displayReservations(VaccinationCenter vaccinationCenter) {
         AtomicInteger runCount = new AtomicInteger(0);
@@ -21,40 +61,28 @@ public class VaccinationCenterService {
             System.err.println("No Reservations are made");
         }
     }
-
-    public Reservation makeReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
-        Reservation reservation =  new Reservation(insured, timeSlot);
-        vaccinationCenter.addReservation(reservation);
-        return reservation;
-    }
-
-    private Timeslot findTimeSlotByVaccinationCenter(Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
-        Timeslot foundTimeSlot = null;
-        Optional<Timeslot> optionalTimeSlot = vaccinationCenter.getFreeTimeSlots()
-                .stream()
-                .filter(freeTimeSlot -> freeTimeSlot.equals(timeSlot)).findFirst();
-        if (optionalTimeSlot.isPresent()) {
-            foundTimeSlot = optionalTimeSlot.get();
+    public List<Timeslot> displayFreeTimeslotsByVaccinationCenter(VaccinationCenter vaccinationCenter){
+        List<Timeslot> freeTimeslots = new ArrayList<>();
+        for (Timeslot ts: vaccinationCenter.getTimeslots()){
+            if(ts.isAvailable()) { freeTimeslots.add(ts); }
         }
-        return foundTimeSlot;
-    }
-
-    public Vaccination vaccinate(String brand, int yearsToExpire, Reservation reservation, VaccinationCenter vaccinationCenter) {
-        Insured insured = reservation.getInsured();
-        Doctor doctor = reservation.getTimeslot().getDoctor();
-        LocalDateTime startDateTime = reservation.getTimeslot().getStartDateTime();
-        LocalDateTime expirationDate = startDateTime.plusYears(yearsToExpire);
-        Vaccination vaccination = new Vaccination(brand, insured, doctor, startDateTime, expirationDate);
-        //Add record of vaccination to vaccination center
-        vaccinationCenter.addVaccination(vaccination);
-        //Add vaccination in doctor's vaccinations list
-        doctor.addVaccination(vaccination);
-        return vaccination;
+        return freeTimeslots;
     }
 
 
+    private Reservation findReservationByInsuredAmka(Insured insured, VaccinationCenter vaccinationCenter) {
+        Reservation reservation = null;
+        Optional<Reservation> optionalReservation = vaccinationCenter
+                .getReservations()
+                .stream().filter(reserv -> reserv
+                        .getInsured()
+                        .getAmka()
+                        .equals(insured.getAmka())).findFirst();
+        if (optionalReservation.isPresent()) {
+            reservation = optionalReservation.get();
+        }
+        return reservation;
 
-
-
+    }
 
 }

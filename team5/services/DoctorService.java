@@ -3,7 +3,7 @@ package team5.services;
 
 import team5.model.Doctor;
 import team5.model.Vaccination;
-
+import team5.utilities.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,25 +28,29 @@ public class DoctorService {
         }
     }
 
-    public Doctor createDoctor(String amka, String firstName, String lastName) {
-        Doctor doctor = null;
+    public void createDoctor(String amka, String firstName, String lastName) {
         if (findAmkaByDoctor(amka) == null) {
-            doctor = new Doctor(amka, firstName, lastName);
-            doctors.add(doctor);
+            if (InputValidator.checkAmka(amka)) {
+                Doctor doctor = new Doctor(amka, firstName, lastName);
+                doctors.add(doctor);
+            } else {
+                System.err.println("Please provide a right amka");
+            }
+        } else {
+            System.err.println("This doctor with amka " + amka + " already exists");
         }
-        return doctor;
     }
 
-    public void displayVaccinationsOfAllDoctors(){
-        for(Doctor d: doctors){
+
+    public void displayVaccinationsOfAllDoctors() {
+        for (Doctor d : doctors) {
             displayVaccinationsPerDoctor(d);
         }
     }
 
     public Doctor findAmkaByDoctor(String amka) {
         Doctor foundDoctor = null;
-        Optional<Doctor> doctor = doctors
-                .stream().filter(e -> e.equals(amka)).findFirst();
+        Optional<Doctor> doctor = doctors.stream().filter(e -> e.equals(amka)).findFirst();
         if (doctor.isPresent()) {
             foundDoctor = doctor.get();
         }
