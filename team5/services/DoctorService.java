@@ -28,7 +28,6 @@ public class DoctorService {
         }
     }
 
-
     public Doctor createDoctor(String amka, String firstName, String lastName) {
         Doctor doctor = null;
         if (findAmkaByDoctor(amka) == null) {
