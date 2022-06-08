@@ -35,8 +35,11 @@ public class App {
                 insured6, insured7, insured8, insured9, insured10,
                 insured11, insured12, insured13, insured14, insured15);
 
-        VaccinationCenter vaccCenter1 = new VaccinationCenter("5012", "Thessaloniki", "Egnatias 10");
-        VaccinationCenter vaccCenter2 = new VaccinationCenter("4356", "Thessaloniki", "Egnatias 54");
+//        VaccinationCenter vaccCenter1 = new VaccinationCenter("5012", "Thessaloniki", "Egnatias 10");
+//        VaccinationCenter vaccCenter2 = new VaccinationCenter("4356", "Thessaloniki", "Egnatias 54");
+
+        VaccinationCenter vaccCenter1 = vaccinationCenterService.createVaccinationCenter("5012", "Thessaloniki", "Egnatias 10");
+        VaccinationCenter vaccCenter2 = vaccinationCenterService.createVaccinationCenter("4356", "Thessaloniki", "Egnatias 54");
 
         Doctor doctor1 = new Doctor("12345678912", "nikolaos", "vasileiou");
         Doctor doctor2 = new Doctor("12345678913", "georgios", "papas");
@@ -44,6 +47,7 @@ public class App {
         Doctor doctor4 = new Doctor("12345678915", "xristina", "deli");
 
         doctorService.createDoctor("12345678912", "nikolaos", "vasileiou");
+        doctorService.createDoctor("12345678919", "vasilis", "dimitriou");
 
 
         //timeslots for vaccination center1
@@ -127,13 +131,21 @@ public class App {
         //  vaccinationCenterService.vaccinate("Pfizer", 2, reservation6, vaccCenter2);
 
 
-        vaccinationCenterService.displayReservations(vaccCenter1);
-        vaccinationCenterService.displayReservations(vaccCenter2);
+//        vaccinationCenterService.displayReservations(vaccCenter1);
+//        vaccinationCenterService.displayReservations(vaccCenter2);
+//
+//        doctorService.displayVaccinationsPerDoctor(doctor3);
+//
+//        doctorService.displayVaccinationsOfAllDoctors();
 
-        doctorService.displayVaccinationsPerDoctor(doctor3);
+        //requirements
+        //-------------
 
-        doctorService.displayVaccinationsOfAllDoctors();
+        //2nd requirement
+        System.out.println(vaccinationCenterService.displayFreeTimeslotsByVaccinationCenter());
 
+        //3rd requirement
+        System.out.println(doctorService.getVaccinationsOfAllDoctors());
 
     }
 }

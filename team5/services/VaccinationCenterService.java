@@ -12,10 +12,12 @@ public class VaccinationCenterService {
     private final List<VaccinationCenter> totalVaccinationCenters = new ArrayList<>();
 
 
-    public void createVaccinationCenter(String code, String city, String address) {
+    public VaccinationCenter createVaccinationCenter(String code, String city, String address) {
         VaccinationCenter vaccinationCenter = new VaccinationCenter(code, city, address);
         totalVaccinationCenters.add(vaccinationCenter);
+        return vaccinationCenter;
     }
+
 
     public void addTimeslotsToVaccinationCenter(List<Timeslot> timeslots, VaccinationCenter vaccinationCenter) {
         for (Timeslot t : timeslots) {
@@ -61,7 +63,20 @@ public class VaccinationCenterService {
             System.err.println("No Reservations are made");
         }
     }
-    public List<Timeslot> displayFreeTimeslotsByVaccinationCenter(VaccinationCenter vaccinationCenter){
+
+    public String displayFreeTimeslotsByVaccinationCenter(){
+        //final StringBuilder sb = new StringBuilder("List of Free timeslots per Vaccination center\n");
+        String str = "\nList of Free timeslots per Vaccination center:\n";
+        for (VaccinationCenter vc: totalVaccinationCenters){
+            //sb.append("Available timeslots in vaccination center ").append(vc)
+            //       .append(": \n").append(getFreeTimeslotsByVaccinationCenter(vc));
+            str +=  "Vaccination center no." + vc.getCode() + " has free timeslots: " + getFreeTimeslotsByVaccinationCenter(vc)+"\n";
+        }
+        return str;
+    }
+
+
+    public List<Timeslot> getFreeTimeslotsByVaccinationCenter(VaccinationCenter vaccinationCenter){
         List<Timeslot> freeTimeslots = new ArrayList<>();
         for (Timeslot ts: vaccinationCenter.getTimeslots()){
             if(ts.isAvailable()) { freeTimeslots.add(ts); }
@@ -82,7 +97,6 @@ public class VaccinationCenterService {
             reservation = optionalReservation.get();
         }
         return reservation;
-
     }
 
 }

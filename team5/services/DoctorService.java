@@ -2,6 +2,7 @@ package team5.services;
 
 
 import team5.model.Doctor;
+import team5.model.Timeslot;
 import team5.model.Vaccination;
 import team5.utilities.InputValidator;
 import java.util.ArrayList;
@@ -15,20 +16,21 @@ public class DoctorService {
     private final List<Doctor> doctors = new ArrayList<>();
 
 
-    public void displayVaccinationsPerDoctor(Doctor doctor) {
+    public String getVaccinationsPerDoctor(Doctor doctor) {
         List<Vaccination> vaccinations = doctor.getVaccinations();
-        System.out.println("---------Vaccinations of Doctor with amka " + doctor.getAmka() + "---------");
+        String str = "---------Vaccinations of Doctor with amka " + doctor.getAmka() + "---------\n";
         if (vaccinations.isEmpty()) {
-            System.out.println("This Doctor has done no vaccinations yet");
+            str+="This Doctor has done no vaccinations yet.\n";
         }
-        for (Vaccination vacc : vaccinations) {
-            System.out.println("The vaccination date is:" + vacc.getVaccinationDate());
-            System.out.println("The insured is:" + vacc.getInsured().getName() + " " + vacc.getInsured().getSurname());
-
-        }
+       for (Vaccination vacc : vaccinations) {
+            str+= "The vaccination date is:" + vacc.getVaccinationDate() + "\n" +
+                    "The insured is:" + vacc.getInsured().getName() + " " + vacc.getInsured().getSurname() +"\n";
+       }
+       return str;
     }
 
     public void createDoctor(String amka, String firstName, String lastName) {
+
         if (findAmkaByDoctor(amka) == null) {
             if (InputValidator.checkAmka(amka)) {
                 Doctor doctor = new Doctor(amka, firstName, lastName);
@@ -41,11 +43,14 @@ public class DoctorService {
         }
     }
 
-
-    public void displayVaccinationsOfAllDoctors() {
+    public String getVaccinationsOfAllDoctors() {
+        System.out.println("*************");
+        System.out.println(doctors);
+        String str = "Vaccdoctor:\n";
         for (Doctor d : doctors) {
-            displayVaccinationsPerDoctor(d);
+            str+= getVaccinationsPerDoctor(d);
         }
+        return str;
     }
 
     public Doctor findAmkaByDoctor(String amka) {
