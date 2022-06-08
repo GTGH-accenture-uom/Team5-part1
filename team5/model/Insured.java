@@ -1,6 +1,7 @@
 package team5.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Insured {
 
@@ -65,6 +66,19 @@ public class Insured {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Insured insured = (Insured) o;
+        return afm.equals(insured.afm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(afm);
     }
 
     @Override

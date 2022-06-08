@@ -2,6 +2,7 @@ package team5;
 
 import team5.model.*;
 import team5.services.DoctorService;
+import team5.services.InsuredService;
 import team5.services.VaccinationCenterService;
 
 import java.time.LocalDate;
@@ -14,22 +15,24 @@ public class App {
     private static final VaccinationCenterService vaccinationCenterService = new VaccinationCenterService();
     private static final DoctorService doctorService = new DoctorService();
 
+    private static final InsuredService insuredService = new InsuredService();
+
     public static void main(String[] args) {
-        Insured insured1 = new Insured("111111177", "22222223333", "makis", LocalDate.of(2018, 8, 23), "papadopoulos", "mail@mail.gr");
-        Insured insured2 = new Insured("111111177", "22202223333", "takis", LocalDate.of(2010, 6, 20), "papas", "mail2@mail.gr");
-        Insured insured3 = new Insured("111111179", "22222223309", "sakis", LocalDate.of(2018, 8, 23), "euaggelou", "mail3@mail.gr");
-        Insured insured4 = new Insured("111111170", "22202223330", "lakis", LocalDate.of(2019, 6, 27), "nikou", "mail4@mail.gr");
-        Insured insured5 = new Insured("211111177", "32222223333", "giotis", LocalDate.of(2018, 8, 23), "papadopoulos", "mai99l@mail.gr");
-        Insured insured6 = new Insured("211811177", "32205223333", "nikos", LocalDate.of(2017, 6, 20), "papafotiou", "mail22@mail.gr");
-        Insured insured7 = new Insured("211111179", "32223223309", "alexis", LocalDate.of(2008, 8, 23), "euaggelou", "mail23@mail.gr");
-        Insured insured8 = new Insured("211111700", "32202223330", "maria", LocalDate.of(2009, 6, 27), "nikou", "mail24@mail.gr");
-        Insured insured9 = new Insured("111111770", "22224223333", "makis", LocalDate.of(2018, 8, 23), "nikolaou", "mail8@mail.gr");
-        Insured insured10 = new Insured("333333333", "22202623333", "mairi", LocalDate.of(2010, 6, 20), "papas", "mail28@mail.gr");
-        Insured insured11 = new Insured("111111179", "22222223309", "gianna", LocalDate.of(2018, 8, 23), "euaggelou", "mail38@mail.gr");
-        Insured insured12 = new Insured("111111170", "22208223330", "lakis", LocalDate.of(2019, 6, 27), "nikou", "mail48@mail.gr");
-        Insured insured13 = new Insured("211111177", "32228223333", "giotis", LocalDate.of(2018, 8, 23), "andreou", "mail88@mail.gr");
+        Insured insured1 = new Insured("111111177", "22222223333", "makis", LocalDate.of(1950, 8, 23), "papadopoulos", "mail@mail.gr");
+        Insured insured2 = new Insured("111111177", "22202223333", "takis", LocalDate.of(1930, 6, 20), "papas", "mail2@mail.gr");
+        Insured insured3 = new Insured("111111179", "22222223309", "sakis", LocalDate.of(1990, 8, 23), "euaggelou", "mail3@mail.gr");
+        Insured insured4 = new Insured("111111170", "22202223330", "lakis", LocalDate.of(2001, 6, 27), "nikou", "mail4@mail.gr");
+        Insured insured5 = new Insured("211111177", "32222223333", "giotis", LocalDate.of(2001, 8, 23), "papadopoulos", "mai99l@mail.gr");
+        Insured insured6 = new Insured("211811177", "32205223333", "nikos", LocalDate.of(1991, 6, 20), "papafotiou", "mail22@mail.gr");
+        Insured insured7 = new Insured("211111179", "32223223309", "alexis", LocalDate.of(1980, 8, 23), "euaggelou", "mail23@mail.gr");
+        Insured insured8 = new Insured("211111700", "32202223330", "maria", LocalDate.of(1945, 6, 27), "nikou", "mail24@mail.gr");
+        Insured insured9 = new Insured("111111770", "22224223333", "makis", LocalDate.of(1950, 8, 23), "nikolaou", "mail8@mail.gr");
+        Insured insured10 = new Insured("333333333", "22202623333", "mairi", LocalDate.of(1999, 6, 20), "papas", "mail28@mail.gr");
+        Insured insured11 = new Insured("111111179", "22222223309", "gianna", LocalDate.of(2015, 8, 23), "euaggelou", "mail38@mail.gr");
+        Insured insured12 = new Insured("111111170", "22208223330", "lakis", LocalDate.of(2013, 6, 27), "nikou", "mail48@mail.gr");
+        Insured insured13 = new Insured("211111177", "32228223333", "giotis", LocalDate.of(2010, 8, 23), "andreou", "mail88@mail.gr");
         Insured insured14 = new Insured("211111177", "32202723333", "xrisa", LocalDate.of(2017, 6, 20), "papas", "mail228@mail.gr");
-        Insured insured15 = new Insured("211111179", "32228223309", "alexis", LocalDate.of(2038, 8, 23), "nakis", "mail238@mail.gr");
+        Insured insured15 = new Insured("211111179", "32228223309", "alexis", LocalDate.of(1930, 8, 23), "nakis", "mail238@mail.gr");
 
         List<Insured> insuredList = Arrays.asList(insured1, insured2, insured3, insured4, insured5,
                 insured6, insured7, insured8, insured9, insured10,
@@ -38,8 +41,10 @@ public class App {
 //        VaccinationCenter vaccCenter1 = new VaccinationCenter("5012", "Thessaloniki", "Egnatias 10");
 //        VaccinationCenter vaccCenter2 = new VaccinationCenter("4356", "Thessaloniki", "Egnatias 54");
 
+
         VaccinationCenter vaccCenter1 = vaccinationCenterService.createVaccinationCenter("5012", "Thessaloniki", "Egnatias 10");
         VaccinationCenter vaccCenter2 = vaccinationCenterService.createVaccinationCenter("4356", "Thessaloniki", "Egnatias 54");
+
 
         Doctor doctor1 = new Doctor("12345678912", "nikolaos", "vasileiou");
         Doctor doctor2 = new Doctor("12345678913", "georgios", "papas");
@@ -103,11 +108,10 @@ public class App {
         doctor4.addTimeslot(timeslot10center2);
 
 
-
         List<Timeslot> timeslotListCenter2 = Arrays.asList(timeslot1center2, timeslot2center2, timeslot3center2, timeslot4center2,
                 timeslot5center2, timeslot6center2, timeslot7center2, timeslot8center2, timeslot9center2, timeslot10center2);
 
-        vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter2,vaccCenter2);
+        vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter2, vaccCenter2);
 
 
         //Reservations for Center1
@@ -139,7 +143,6 @@ public class App {
 //        doctorService.displayVaccinationsOfAllDoctors();
 
         //requirements
-        //-------------
 
         //1st requirement
         System.out.println(vaccinationCenterService.getAllReservationsPerCenter());
@@ -150,7 +153,12 @@ public class App {
         //3rd requirement
         System.out.println(doctorService.getVaccinationsOfAllDoctors());
 
-        //4rth requirement
+
+        //4th requirement
+        List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();
+       insuredService.getNonVaccinatedInsuredAbove60(insuredList,vaccinationCenters);
+
+
 
 
     }

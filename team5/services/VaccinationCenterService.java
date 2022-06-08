@@ -1,12 +1,15 @@
 package team5.services;
 
 import team5.model.*;
+
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class VaccinationCenterService {
 
     private final List<Timeslot> timeslots = new ArrayList<>();
+
+    private final List<Reservation> reservations = new ArrayList<>();
 
     private final List<VaccinationCenter> totalVaccinationCenters = new ArrayList<>();
 
@@ -28,6 +31,7 @@ public class VaccinationCenterService {
 
     public void makeReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
         Reservation reservation = new Reservation(insured, timeSlot);
+        reservations.add(reservation);
         vaccinationCenter.addReservation(reservation);
     }
 
@@ -50,10 +54,10 @@ public class VaccinationCenterService {
 
     }
 
-    public String getAllReservationsPerCenter(){
+    public String getAllReservationsPerCenter() {
         String str = "All reservations per center\n";
-        for (VaccinationCenter v: totalVaccinationCenters){
-            str+= getReservations(v);
+        for (VaccinationCenter v : totalVaccinationCenters) {
+            str += getReservations(v);
         }
         return str;
     }
@@ -63,33 +67,35 @@ public class VaccinationCenterService {
         List<Reservation> reservations = vaccinationCenter.getReservations();
         if (!reservations.isEmpty()) {
             str += "---------Reservations of VaccinationCenter " + vaccinationCenter.getCode() + "---------\n";
-            int count =1;
-            for (Reservation r: reservations){
+            int count = 1;
+            for (Reservation r : reservations) {
                 str += count + "-" + r + "\n";
                 count++;
             }
         } else {
-            str+="No Reservations are made\n";
+            str += "No Reservations are made\n";
         }
         return str;
     }
 
-    public String getFreeTimeslotsByVaccinationCenter(){
+    public String getFreeTimeslotsByVaccinationCenter() {
         //final StringBuilder sb = new StringBuilder("List of Free timeslots per Vaccination center\n");
         String str = "\nList of Free timeslots per Vaccination center:\n";
-        for (VaccinationCenter vc: totalVaccinationCenters){
+        for (VaccinationCenter vc : totalVaccinationCenters) {
             //sb.append("Available timeslots in vaccination center ").append(vc)
             //       .append(": \n").append(getFreeTimeslotsByVaccinationCenter(vc));
-            str +=  "Vaccination center no." + vc.getCode() + " has free timeslots: " + getFreeTimeslotsByVaccinationCenter(vc)+"\n";
+            str += "Vaccination center no." + vc.getCode() + " has free timeslots: " + getFreeTimeslotsByVaccinationCenter(vc) + "\n";
         }
         return str;
     }
 
 
-    public List<Timeslot> getFreeTimeslotsByVaccinationCenter(VaccinationCenter vaccinationCenter){
+    public List<Timeslot> getFreeTimeslotsByVaccinationCenter(VaccinationCenter vaccinationCenter) {
         List<Timeslot> freeTimeslots = new ArrayList<>();
-        for (Timeslot ts: vaccinationCenter.getTimeslots()){
-            if(ts.isAvailable()) { freeTimeslots.add(ts); }
+        for (Timeslot ts : vaccinationCenter.getTimeslots()) {
+            if (ts.isAvailable()) {
+                freeTimeslots.add(ts);
+            }
         }
         return freeTimeslots;
     }
@@ -107,6 +113,10 @@ public class VaccinationCenterService {
             reservation = optionalReservation.get();
         }
         return reservation;
+    }
+
+    public List<VaccinationCenter> getTotalVaccinationCenters() {
+        return totalVaccinationCenters;
     }
 
 }
