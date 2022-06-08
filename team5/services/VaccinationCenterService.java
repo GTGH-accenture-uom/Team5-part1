@@ -3,7 +3,6 @@ package team5.services;
 import team5.model.*;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class VaccinationCenterService {
 
@@ -51,20 +50,31 @@ public class VaccinationCenterService {
 
     }
 
-    public void displayReservations(VaccinationCenter vaccinationCenter) {
-        AtomicInteger runCount = new AtomicInteger(0);
-        List<Reservation> reservations = vaccinationCenter.getReservations();
-        if (!reservations.isEmpty()) {
-            System.out.println("---------Reservations of VaccinationCenter " + vaccinationCenter.getCode() + "---------");
-            reservations.forEach(reservation -> {
-                System.out.println((runCount.incrementAndGet()) + "-" + reservation);
-            });
-        } else {
-            System.err.println("No Reservations are made");
+    public String getAllReservationsPerCenter(){
+        String str = "All reservations per center\n";
+        for (VaccinationCenter v: totalVaccinationCenters){
+            str+= getReservations(v);
         }
+        return str;
     }
 
-    public String displayFreeTimeslotsByVaccinationCenter(){
+    public String getReservations(VaccinationCenter vaccinationCenter) {
+        String str = "Reservations per Vaccination center\n";
+        List<Reservation> reservations = vaccinationCenter.getReservations();
+        if (!reservations.isEmpty()) {
+            str += "---------Reservations of VaccinationCenter " + vaccinationCenter.getCode() + "---------\n";
+            int count =1;
+            for (Reservation r: reservations){
+                str += count + "-" + r + "\n";
+                count++;
+            }
+        } else {
+            str+="No Reservations are made\n";
+        }
+        return str;
+    }
+
+    public String getFreeTimeslotsByVaccinationCenter(){
         //final StringBuilder sb = new StringBuilder("List of Free timeslots per Vaccination center\n");
         String str = "\nList of Free timeslots per Vaccination center:\n";
         for (VaccinationCenter vc: totalVaccinationCenters){

@@ -141,11 +141,17 @@ public class App {
         //requirements
         //-------------
 
+        //1st requirement
+        System.out.println(vaccinationCenterService.getAllReservationsPerCenter());
+
         //2nd requirement
-        System.out.println(vaccinationCenterService.displayFreeTimeslotsByVaccinationCenter());
+        System.out.println(vaccinationCenterService.getFreeTimeslotsByVaccinationCenter());
 
         //3rd requirement
         System.out.println(doctorService.getVaccinationsOfAllDoctors());
+
+        //4rth requirement
+
 
     }
 }
