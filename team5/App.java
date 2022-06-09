@@ -156,7 +156,7 @@ public class App {
 
         //4th requirement
         List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();
-       insuredService.getNonVaccinatedInsuredAbove60(insuredList,vaccinationCenters);
+       insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
 
 
 

@@ -11,17 +11,20 @@ import java.util.stream.Collectors;
 public class InsuredService {
 
 
-    public void getNonVaccinatedInsuredAbove60(List<Insured> insuredList, List<VaccinationCenter> vaccinationCenters) {
 
-        List<Insured> insuredWhoBooked = vaccinationCenters
+    public void getInsuredAbove60WhoDidntReserve(List<Insured> insuredList, List<VaccinationCenter> vaccinationCenters) {
+
+        // Taking all the insured above 60 who made reservation from all vaccination centers
+        List<Insured> insuredWhoReservedAbove60 = vaccinationCenters
                 .stream()
                 .flatMap(vaccinationCenter -> vaccinationCenter.getReservations().stream())
                 .map(Reservation::getInsured)
                 .filter(e -> LocalDate.now().getYear() - e.getBirthdate().getYear() > 60)
                 .toList();
 
+        //Exclude the insuredWhoReservedAbove60 from the general list of insured and keeping only them who are above 60
         List<Insured> insured = insuredList.stream()
-                .filter(ins -> !insuredWhoBooked.contains(ins) && LocalDate.now().getYear() - ins.getBirthdate().getYear() > 60)
+                .filter(ins -> !insuredWhoReservedAbove60.contains(ins) && LocalDate.now().getYear() - ins.getBirthdate().getYear() > 60)
                 .collect(Collectors.toList());
 
 
