@@ -1,5 +1,7 @@
 package model;
 
+import utilities.InputValidator;
+
 import java.time.LocalDate;
 import java.util.Objects;
 

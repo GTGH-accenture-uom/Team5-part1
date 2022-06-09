@@ -1,6 +1,8 @@
 package model;
 
 
+import utilities.InputValidator;
+
 import java.util.*;
 
 public class Doctor {
@@ -44,7 +46,6 @@ public class Doctor {
     public List<Timeslot> getTimeslots() {
         return timeslots;
     }
-
 
     public void setTimeslots(List<Timeslot> timeslots) {
         this.timeslots = timeslots;

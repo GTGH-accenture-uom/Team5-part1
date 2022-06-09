@@ -7,9 +7,6 @@ import java.util.*;
 
 public class VaccinationCenterService {
 
-    private final List<Timeslot> timeslots = new ArrayList<>();
-
-    private final List<Reservation> reservations = new ArrayList<>();
 
     private final List<VaccinationCenter> totalVaccinationCenters = new ArrayList<>();
 
@@ -31,12 +28,11 @@ public class VaccinationCenterService {
 
     public void makeReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
         Reservation reservation = new Reservation(insured, timeSlot);
-        reservations.add(reservation);
         vaccinationCenter.addReservation(reservation);
         timeSlot.setAvailable(false);
     }
 
-    public void vaccinate(String brand, int yearsToExpire, Insured insured, VaccinationCenter vaccinationCenter) {
+    public void createVaccination(String brand, int yearsToExpire, Insured insured, VaccinationCenter vaccinationCenter) {
         Reservation foundReservation = findReservationByInsuredAmka(insured, vaccinationCenter);
         if (foundReservation != null) {
             Insured insuredToVaccinate = foundReservation.getInsured();
@@ -80,11 +76,8 @@ public class VaccinationCenterService {
     }
 
     public String getFreeTimeslotsByVaccinationCenter() {
-        //final StringBuilder sb = new StringBuilder("List of Free timeslots per Vaccination center\n");
         String str = "\nList of Free timeslots per Vaccination center:\n";
         for (VaccinationCenter vc : totalVaccinationCenters) {
-            //sb.append("Available timeslots in vaccination center ").append(vc)
-            //       .append(": \n").append(getFreeTimeslotsByVaccinationCenter(vc));
             str += "Vaccination center no." + vc.getCode() + " has free timeslots: " + getFreeTimeslotsByVaccinationCenter(vc) + "\n";
         }
         return str;

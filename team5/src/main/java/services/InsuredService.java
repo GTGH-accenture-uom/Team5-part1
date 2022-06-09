@@ -28,8 +28,6 @@ public class InsuredService {
         return insuredList.stream()
                 .filter(ins -> !insuredWhoReservedAbove60.contains(ins) && isInsuredAbove60(ins))
                 .collect(Collectors.toList());
-
-
     }
 
     private boolean isInsuredAbove60(Insured e) {

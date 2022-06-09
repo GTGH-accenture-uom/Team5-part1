@@ -61,18 +61,16 @@ public class DoctorService {
         }
         return foundDoctor;
     }
+
     public void addTimeslotToDoctor(String amka, Timeslot timeslot) {
         Doctor doctor = findDoctorByAmka(amka);
-        System.out.println(doctor);
-        System.out.println(!doctor.getTimeslots().contains(timeslot));
-        if (doctor!=null && timeslot!=null && timeslot.isAvailable()
+        if (doctor != null && timeslot != null && timeslot.isAvailable()
                 && !doctor.getTimeslots().contains(timeslot)) {
             doctor.addTimeslot(timeslot);
             timeslot.setDoctor(doctor);
-
-        }
-        else{
-            System.err.println("timeslot can not be added");
+            System.out.println(doctor);
+        } else {
+            System.err.println("Timeslot can not be added");
         }
     }
 }

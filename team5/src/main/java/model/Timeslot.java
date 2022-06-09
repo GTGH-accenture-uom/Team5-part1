@@ -12,12 +12,11 @@ public class Timeslot {
     private Doctor doctor;
 
 
-    public Timeslot(LocalDateTime startDateTime, int duration, Doctor doctor) {
+    public Timeslot(LocalDateTime startDateTime, int duration) {
         this.startDateTime = startDateTime;
         this.isAvailable = true;
         this.duration = duration;
         this.endDateTime = startDateTime.plusMinutes(duration);
-        this.doctor = doctor;
     }
 
     public LocalDateTime getStartDateTime() {
@@ -80,9 +79,6 @@ public class Timeslot {
         sb.append("localDateTime=").append(startDateTime);
         sb.append(", endLocalDateTime=").append(endDateTime);
         sb.append(", duration=").append(duration);
-        sb.append(", doctor's FirstName=").append(doctor.getName());
-        sb.append(",doctor's SurName=").append(doctor.getSurname());
-        sb.append(",doctor's Amka=").append(doctor.getAmka());
         sb.append('}');
         return sb.toString();
     }
