@@ -48,18 +48,21 @@ public class App {
         VaccinationCenter vaccCenter2 = vaccinationCenterService.createVaccinationCenter("4356", "Thessaloniki", "Egnatias 54");
 
 
-        Doctor doctor1 = new Doctor("12345678912", "nikolaos", "vasileiou");
+       /* Doctor doctor1 = new Doctor("12345678912", "nikolaos", "vasileiou");
         Doctor doctor2 = new Doctor("12345678913", "georgios", "papas");
         Doctor doctor3 = new Doctor("12345678914", "maria", "dimitriou");
-        Doctor doctor4 = new Doctor("12345678915", "xristina", "deli");
+        Doctor doctor4 = new Doctor("12345678915", "xristina", "deli");*/
 
         doctorService.createDoctor("12345678912", "nikolaos", "vasileiou");
         doctorService.createDoctor("12345678919", "vasilis", "dimitriou");
 
 
         //timeslots for vaccination center1
-        Timeslot timeslot1center1 = new Timeslot(LocalDateTime.of(2022, 6, 23, 18, 30), 20, doctor1);
-        doctor1.addTimeslot(timeslot1center1);
+        //Timeslot timeslot1center1 = new Timeslot(LocalDateTime.of(2022, 6, 23, 18, 30), 20, doctor1);
+       // doctor1.addTimeslot(timeslot1center1);
+       // System.out.println(doctor1);
+
+        doctorService.addTimeslotToDoctor("12345678912",timeslot1center1);
         Timeslot timeslot2center1 = new Timeslot(timeslot1center1.getEndDateTime(), 15, doctor1);
         doctor1.addTimeslot(timeslot2center1);
         Timeslot timeslot3center1 = new Timeslot(timeslot2center1.getEndDateTime(), 25, doctor1);
@@ -165,7 +168,7 @@ public class App {
         insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
         totalRecords+=insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
 
-        RecordWriter.writeFile(totalRecords);
+        RecordWriter.writeFile(totalRecords);*/
 
 
     }

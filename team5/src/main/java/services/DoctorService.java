@@ -1,6 +1,7 @@
 package services;
 
 import model.Doctor;
+import model.Timeslot;
 import model.Vaccination;
 import utilities.InputValidator;
 import java.util.ArrayList;
@@ -60,5 +61,18 @@ public class DoctorService {
         }
         return foundDoctor;
     }
+    public void addTimeslotToDoctor(String amka, Timeslot timeslot) {
+        Doctor doctor = findDoctorByAmka(amka);
+        System.out.println(doctor);
+        System.out.println(!doctor.getTimeslots().contains(timeslot));
+        if (doctor!=null && timeslot!=null && timeslot.isAvailable()
+                && !doctor.getTimeslots().contains(timeslot)) {
+            doctor.addTimeslot(timeslot);
+            timeslot.setDoctor(doctor);
 
+        }
+        else{
+            System.err.println("timeslot can not be added");
+        }
+    }
 }
