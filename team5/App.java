@@ -159,7 +159,5 @@ public class App {
        insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
 
 
-
-
     }
 }
