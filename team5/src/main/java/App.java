@@ -1,9 +1,11 @@
-package team5;
-
-import team5.model.*;
-import team5.services.DoctorService;
-import team5.services.InsuredService;
-import team5.services.VaccinationCenterService;
+import model.Doctor;
+import model.Insured;
+import model.Timeslot;
+import model.VaccinationCenter;
+import services.DoctorService;
+import services.InsuredService;
+import services.VaccinationCenterService;
+import utilities.RecordWriter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -144,19 +146,26 @@ public class App {
 
         //requirements
 
+        String totalRecords = "";
         //1st requirement
         System.out.println(vaccinationCenterService.getAllReservationsPerCenter());
+        totalRecords+=vaccinationCenterService.getAllReservationsPerCenter();
 
         //2nd requirement
         System.out.println(vaccinationCenterService.getFreeTimeslotsByVaccinationCenter());
+        totalRecords+=vaccinationCenterService.getFreeTimeslotsByVaccinationCenter();
 
         //3rd requirement
         System.out.println(doctorService.getVaccinationsOfAllDoctors());
+        totalRecords+=doctorService.getVaccinationsOfAllDoctors();
 
 
         //4th requirement
         List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();
-       insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
+        insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
+        totalRecords+=insuredService.getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
+
+        RecordWriter.writeFile(totalRecords);
 
 
     }

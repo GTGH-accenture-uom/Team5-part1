@@ -1,4 +1,4 @@
-package team5.model;
+package model;
 
 import java.util.Objects;
 

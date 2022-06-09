@@ -1,6 +1,5 @@
-package team5.model;
+package model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Vaccination {

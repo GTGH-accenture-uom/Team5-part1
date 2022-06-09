@@ -1,6 +1,6 @@
-package team5.services;
+package services;
 
-import team5.model.*;
+import model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;

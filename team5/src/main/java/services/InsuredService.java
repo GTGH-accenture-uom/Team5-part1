@@ -1,8 +1,8 @@
-package team5.services;
+package services;
 
-import team5.model.Insured;
-import team5.model.Reservation;
-import team5.model.VaccinationCenter;
+import model.Insured;
+import model.Reservation;
+import model.VaccinationCenter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +19,7 @@ public class InsuredService {
                 .flatMap(vaccinationCenter -> vaccinationCenter.getReservations().stream())
                 .map(Reservation::getInsured)
                 .filter(this::isInsuredAbove60)
-                .toList();
+                .collect(Collectors.toList());
 
         /*
             Exclude the insuredWhoReservedAbove60 from the general list of insured

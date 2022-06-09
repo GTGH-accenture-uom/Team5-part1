@@ -1,10 +1,10 @@
-package team5.services;
+package services;
 
 
-import team5.model.Doctor;
-import team5.model.Timeslot;
-import team5.model.Vaccination;
-import team5.utilities.InputValidator;
+import model.Doctor;
+import model.Timeslot;
+import model.Vaccination;
+import utilities.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class DoctorService {
 
     public void createDoctor(String amka, String firstName, String lastName) {
 
-        if (findAmkaByDoctor(amka) == null) {
+        if (findDoctorByAmka(amka) == null) {
             if (InputValidator.checkAmka(amka)) {
                 Doctor doctor = new Doctor(amka, firstName, lastName);
                 doctors.add(doctor);
@@ -53,7 +53,7 @@ public class DoctorService {
         return str;
     }
 
-    public Doctor findAmkaByDoctor(String amka) {
+    public Doctor findDoctorByAmka(String amka) {
         Doctor foundDoctor = null;
         Optional<Doctor> doctor = doctors.stream().filter(e -> e.equals(amka)).findFirst();
         if (doctor.isPresent()) {
