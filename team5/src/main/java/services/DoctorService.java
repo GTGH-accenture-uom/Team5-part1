@@ -1,8 +1,6 @@
 package services;
 
-
 import model.Doctor;
-import model.Timeslot;
 import model.Vaccination;
 import utilities.InputValidator;
 import java.util.ArrayList;
@@ -20,13 +18,13 @@ public class DoctorService {
         List<Vaccination> vaccinations = doctor.getVaccinations();
         String str = "---------Vaccinations of Doctor with amka " + doctor.getAmka() + "---------\n";
         if (vaccinations.isEmpty()) {
-            str+="This Doctor has done no vaccinations yet.\n";
+            str += "This Doctor has done no vaccinations yet.\n";
         }
-       for (Vaccination vacc : vaccinations) {
-            str+= "The vaccination date is:" + vacc.getVaccinationDate() + "\n" +
-                    "The insured is:" + vacc.getInsured().getName() + " " + vacc.getInsured().getSurname() +"\n";
-       }
-       return str;
+        for (Vaccination vacc : vaccinations) {
+            str += "The vaccination date is:" + vacc.getVaccinationDate() + "\n" +
+                    "The insured is:" + vacc.getInsured().getName() + " " + vacc.getInsured().getSurname() + "\n";
+        }
+        return str;
     }
 
     public void createDoctor(String amka, String firstName, String lastName) {
@@ -48,14 +46,15 @@ public class DoctorService {
         System.out.println(doctors);
         String str = "Vaccdoctor:\n";
         for (Doctor d : doctors) {
-            str+= getVaccinationsPerDoctor(d);
+            str += getVaccinationsPerDoctor(d);
         }
         return str;
     }
 
     public Doctor findDoctorByAmka(String amka) {
         Doctor foundDoctor = null;
-        Optional<Doctor> doctor = doctors.stream().filter(e -> e.equals(amka)).findFirst();
+        Optional<Doctor> doctor = doctors.stream()
+                .filter(e -> e.getAmka().equals(amka)).findFirst();
         if (doctor.isPresent()) {
             foundDoctor = doctor.get();
         }
