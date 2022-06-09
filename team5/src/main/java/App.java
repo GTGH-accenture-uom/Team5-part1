@@ -15,7 +15,6 @@ public class App {
 
     private static final VaccinationCenterService vaccinationCenterService = new VaccinationCenterService();
     private static final DoctorService doctorService = new DoctorService();
-
     private static final InsuredService insuredService = new InsuredService();
 
     public static void main(String[] args) {
@@ -158,7 +157,7 @@ public class App {
 
         //4th requirement
         List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();
-        System.out.println(insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters));
+        insuredService.displayInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
         totalRecords += insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters);
 
         RecordWriter.writeFile(totalRecords);

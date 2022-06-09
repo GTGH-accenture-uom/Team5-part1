@@ -6,6 +6,7 @@ import model.VaccinationCenter;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class InsuredService {
@@ -31,6 +32,20 @@ public class InsuredService {
 
     private boolean isInsuredAbove60(Insured e) {
         return LocalDate.now().getYear() - e.getBirthdate().getYear() > 60;
+    }
+
+    public void displayInsuredAbove60WhoDidntReserve(List<Insured> insuredList, List<VaccinationCenter> vaccinationCenters) {
+        AtomicInteger runCount = new AtomicInteger(0);
+        List<Insured> insuredAbove60WhoDidntReserve =  getInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
+        if (!insuredAbove60WhoDidntReserve.isEmpty()) {
+            System.out.println("--------INSURED ABOVE 60 WHO DIDNT RESERVE-------");
+            insuredAbove60WhoDidntReserve.forEach(insured -> {
+                System.out.println((runCount.incrementAndGet()) + "-"
+                         + insured.getName() + " " + insured.getSurname() + " with afm " +  insured.getAfm() + " didn't reserve");
+            });
+        } else {
+            System.out.println("--------NO INSURED ABOVE 60 WHO DIDNT RESERVE FOUND-------");
+        }
     }
 
 
