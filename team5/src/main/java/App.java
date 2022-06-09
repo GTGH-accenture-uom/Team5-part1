@@ -50,59 +50,68 @@ public class App {
 
         //timeslots for vaccination center1
         Timeslot timeslot1center1 = new Timeslot(LocalDateTime.of(2022, 6, 23, 18, 30), 20);
-
-
         doctorService.addTimeslotToDoctor("12345678912", timeslot1center1);
-        doctorService.addTimeslotToDoctor("12345678912", timeslot1center1);
+
 
         Timeslot timeslot2center1 = new Timeslot(timeslot1center1.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678912", timeslot2center1);
 
         Timeslot timeslot3center1 = new Timeslot(timeslot2center1.getEndDateTime(), 25);
+        doctorService.addTimeslotToDoctor("12345678912", timeslot3center1);
 
         Timeslot timeslot4center1 = new Timeslot(timeslot3center1.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678912", timeslot4center1);
 
         Timeslot timeslot5center1 = new Timeslot(timeslot4center1.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678912", timeslot5center1);
 
         Timeslot timeslot6center1 = new Timeslot(timeslot5center1.getEndDateTime(), 10);
+        doctorService.addTimeslotToDoctor("12345678919", timeslot6center1);
 
         Timeslot timeslot7center1 = new Timeslot(timeslot6center1.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678919", timeslot7center1);
 
         Timeslot timeslot8center1 = new Timeslot(timeslot7center1.getEndDateTime(), 25);
+        doctorService.addTimeslotToDoctor("12345678919", timeslot8center1);
 
         Timeslot timeslot9center1 = new Timeslot(timeslot8center1.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678919", timeslot9center1);
 
         Timeslot timeslot10center1 = new Timeslot(timeslot9center1.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678919", timeslot10center1);
 
         List<Timeslot> timeslotListCenter1 = Arrays.asList(timeslot1center1, timeslot2center1, timeslot3center1, timeslot4center1, timeslot5center1, timeslot6center1, timeslot7center1, timeslot8center1, timeslot9center1, timeslot10center1);
-
-
         vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter1, vaccCenter1);
 
 
         //timeslots for vaccination center2
         Timeslot timeslot1center2 = new Timeslot(LocalDateTime.of(2022, 6, 23, 18, 30), 20);
+        doctorService.addTimeslotToDoctor("12345678914", timeslot1center2);
 
         Timeslot timeslot2center2 = new Timeslot(timeslot1center2.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678914", timeslot2center2);
 
         Timeslot timeslot3center2 = new Timeslot(timeslot2center2.getEndDateTime(), 25);
+        doctorService.addTimeslotToDoctor("12345678914", timeslot3center2);
 
         Timeslot timeslot4center2 = new Timeslot(timeslot3center2.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678914", timeslot4center2);
 
         Timeslot timeslot5center2 = new Timeslot(timeslot4center2.getEndDateTime(), 15);
+        doctorService.addTimeslotToDoctor("12345678914", timeslot5center2);
 
         Timeslot timeslot6center2 = new Timeslot(timeslot5center2.getEndDateTime(), 10);
-
+        doctorService.addTimeslotToDoctor("12345678915", timeslot6center2);
         Timeslot timeslot7center2 = new Timeslot(timeslot6center2.getEndDateTime(), 15);
-
+        doctorService.addTimeslotToDoctor("12345678915", timeslot7center2);
         Timeslot timeslot8center2 = new Timeslot(timeslot7center2.getEndDateTime(), 25);
-
+        doctorService.addTimeslotToDoctor("12345678915", timeslot8center2);
         Timeslot timeslot9center2 = new Timeslot(timeslot8center2.getEndDateTime(), 15);
-
+        doctorService.addTimeslotToDoctor("12345678915", timeslot9center2);
         Timeslot timeslot10center2 = new Timeslot(timeslot9center2.getEndDateTime(), 15);
-
+        doctorService.addTimeslotToDoctor("12345678915", timeslot10center2);
 
         List<Timeslot> timeslotListCenter2 = Arrays.asList(timeslot1center2, timeslot2center2, timeslot3center2, timeslot4center2, timeslot5center2, timeslot6center2, timeslot7center2, timeslot8center2, timeslot9center2, timeslot10center2);
-
         vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter2, vaccCenter2);
 
 
@@ -144,7 +153,7 @@ public class App {
 
         //4th requirement
         List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();
-        insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters);
+        System.out.println(insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters));
         totalRecords += insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters);
 
         RecordWriter.writeFile(totalRecords);
