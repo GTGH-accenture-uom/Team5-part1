@@ -21,7 +21,7 @@ public class InsuredService {
                 .filter(this::isInsuredAbove60)
                 .toList();
 
-        //Exclude the insuredWhoReservedAbove60 from the general list of insured and keeping only them who are above 60
+        //Exclude the insuredWhoReservedAbove60 from the general list of insured and keeping only them who are above 60 and didn't reserve
         List<Insured> insured = insuredList.stream()
                 .filter(ins -> !insuredWhoReservedAbove60.contains(ins) && isInsuredAbove60(ins))
                 .collect(Collectors.toList());
