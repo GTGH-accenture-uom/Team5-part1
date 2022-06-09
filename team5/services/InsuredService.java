@@ -22,7 +22,7 @@ public class InsuredService {
                 .filter(e -> LocalDate.now().getYear() - e.getBirthdate().getYear() > 60)
                 .toList();
 
-        //Exclude the insuredWhoReservedAbove60 from the general list of insured and keeping only them who are above 60
+        //Exclude the insuredWhoReservedAbove60 from the general list of insured and keeping only them who are above 60 and didn't reserve
         List<Insured> insured = insuredList.stream()
                 .filter(ins -> !insuredWhoReservedAbove60.contains(ins) && LocalDate.now().getYear() - ins.getBirthdate().getYear() > 60)
                 .collect(Collectors.toList());
