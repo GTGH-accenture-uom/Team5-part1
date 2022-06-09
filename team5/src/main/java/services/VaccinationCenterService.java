@@ -27,9 +27,15 @@ public class VaccinationCenterService {
     }
 
     public void makeReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
-        Reservation reservation = new Reservation(insured, timeSlot);
-        vaccinationCenter.addReservation(reservation);
-        timeSlot.setAvailable(false);
+        if (insured!=null && timeSlot!=null && vaccinationCenter!=null
+            && timeSlot.getDoctor()!=null){
+            Reservation reservation = new Reservation(insured, timeSlot);
+            vaccinationCenter.addReservation(reservation);
+            timeSlot.setAvailable(false);
+        }else{
+            System.err.println("Cannot make this reservation with insured amka:" +insured.getAmka() + ", " +
+                    "timeslot" + timeSlot + ", center with code " + vaccinationCenter.getCode());
+        }
     }
 
     public void createVaccination(String brand, int yearsToExpire, Insured insured, VaccinationCenter vaccinationCenter) {
