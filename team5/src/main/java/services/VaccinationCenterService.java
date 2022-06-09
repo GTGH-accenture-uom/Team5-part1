@@ -33,6 +33,7 @@ public class VaccinationCenterService {
         Reservation reservation = new Reservation(insured, timeSlot);
         reservations.add(reservation);
         vaccinationCenter.addReservation(reservation);
+        timeSlot.setAvailable(false);
     }
 
     public void vaccinate(String brand, int yearsToExpire, Insured insured, VaccinationCenter vaccinationCenter) {
