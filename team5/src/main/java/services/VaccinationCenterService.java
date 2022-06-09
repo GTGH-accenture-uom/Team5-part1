@@ -119,4 +119,18 @@ public class VaccinationCenterService {
         return totalVaccinationCenters;
     }
 
+    //1st requirement
+    public void displayAllReservationsPerCenter(){
+        System.out.println(getAllReservationsPerCenter());
+
+    }
+    //2st requirement
+    public void displayFreeTimeslotsByVaccinationCenter(){
+        System.out.println(getFreeTimeslotsByVaccinationCenter());
+
+    }
+
+
+
+
 }

@@ -102,12 +102,16 @@ public class App {
 
         Timeslot timeslot6center2 = new Timeslot(timeslot5center2.getEndDateTime(), 10);
         doctorService.addTimeslotToDoctor("12345678915", timeslot6center2);
+
         Timeslot timeslot7center2 = new Timeslot(timeslot6center2.getEndDateTime(), 15);
         doctorService.addTimeslotToDoctor("12345678915", timeslot7center2);
+
         Timeslot timeslot8center2 = new Timeslot(timeslot7center2.getEndDateTime(), 25);
         doctorService.addTimeslotToDoctor("12345678915", timeslot8center2);
+
         Timeslot timeslot9center2 = new Timeslot(timeslot8center2.getEndDateTime(), 15);
         doctorService.addTimeslotToDoctor("12345678915", timeslot9center2);
+
         Timeslot timeslot10center2 = new Timeslot(timeslot9center2.getEndDateTime(), 15);
         doctorService.addTimeslotToDoctor("12345678915", timeslot10center2);
 
@@ -127,7 +131,7 @@ public class App {
         vaccinationCenterService.makeReservation(insured7, timeslot3center2, vaccCenter2);
         vaccinationCenterService.makeReservation(insured8, timeslot4center2, vaccCenter2);
 
-
+        //vaccinations
         vaccinationCenterService.createVaccination("Pfizer", 2, insured1, vaccCenter1);
         vaccinationCenterService.createVaccination("Moderna", 3, insured2, vaccCenter1);
         vaccinationCenterService.createVaccination("Pfizer", 2, insured3, vaccCenter1);
@@ -139,16 +143,17 @@ public class App {
         //requirements
         String totalRecords = "";
         //1st requirement
-        System.out.println(vaccinationCenterService.getAllReservationsPerCenter());
         totalRecords += vaccinationCenterService.getAllReservationsPerCenter();
+        vaccinationCenterService.displayAllReservationsPerCenter();
+
 
         //2nd requirement
-        System.out.println(vaccinationCenterService.getFreeTimeslotsByVaccinationCenter());
         totalRecords += vaccinationCenterService.getFreeTimeslotsByVaccinationCenter();
+        vaccinationCenterService.displayFreeTimeslotsByVaccinationCenter();
 
         //3rd requirement
-        System.out.println(doctorService.getVaccinationsOfAllDoctors());
         totalRecords += doctorService.getVaccinationsOfAllDoctors();
+        doctorService.displayVaccinationsOfAllDoctorsPerCenter();
 
 
         //4th requirement

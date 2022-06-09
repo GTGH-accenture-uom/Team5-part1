@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class InsuredService {
 
-
     public List<Insured> getInsuredAbove60WhoDidntReserve(List<Insured> insuredList, List<VaccinationCenter> vaccinationCenters) {
 
         // Taking all the insured above 60 who made reservation from all vaccination centers
