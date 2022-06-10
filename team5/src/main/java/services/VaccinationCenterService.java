@@ -8,12 +8,12 @@ import java.util.*;
 public class VaccinationCenterService {
 
 
-    private final List<VaccinationCenter> totalVaccinationCenters = new ArrayList<>();
+    private final List<VaccinationCenter> allVaccinationCenters = new ArrayList<>();
 
 
     public VaccinationCenter createVaccinationCenter(String code, String city, String address) {
         VaccinationCenter vaccinationCenter = new VaccinationCenter(code, city, address);
-        totalVaccinationCenters.add(vaccinationCenter);
+        allVaccinationCenters.add(vaccinationCenter);
         return vaccinationCenter;
     }
 
@@ -26,7 +26,7 @@ public class VaccinationCenterService {
         }
     }
 
-    public void makeReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
+    public void createReservation(Insured insured, Timeslot timeSlot, VaccinationCenter vaccinationCenter) {
         if (insured!=null && timeSlot!=null && vaccinationCenter!=null
             && timeSlot.getDoctor()!=null){
             Reservation reservation = new Reservation(insured, timeSlot);
@@ -58,7 +58,7 @@ public class VaccinationCenterService {
 
     public String getAllReservationsPerCenter() {
         String str = "---------All RERSERVATIONS PER CENTER---------\n";
-        for (VaccinationCenter v : totalVaccinationCenters) {
+        for (VaccinationCenter v : allVaccinationCenters) {
             str += getReservations(v);
         }
         return str;
@@ -82,7 +82,7 @@ public class VaccinationCenterService {
 
     public String getFreeTimeslotsByVaccinationCenter() {
         String str = "---------LIST OF FREE TIMESLOTS PER VACCINATION CENTER---------\n";
-        for (VaccinationCenter vc : totalVaccinationCenters) {
+        for (VaccinationCenter vc : allVaccinationCenters) {
             str += "Vaccination center no." + vc.getCode() + " has free timeslots: " + getFreeTimeslotsByVaccinationCenter(vc) + "\n";
         }
         return str;
@@ -114,8 +114,8 @@ public class VaccinationCenterService {
         return reservation;
     }
 
-    public List<VaccinationCenter> getTotalVaccinationCenters() {
-        return totalVaccinationCenters;
+    public List<VaccinationCenter> getAllVaccinationCenters() {
+        return allVaccinationCenters;
     }
 
     //1st requirement
@@ -128,8 +128,4 @@ public class VaccinationCenterService {
         System.out.println(getFreeTimeslotsByVaccinationCenter());
 
     }
-
-
-
-
 }

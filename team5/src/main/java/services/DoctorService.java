@@ -12,7 +12,7 @@ import java.util.Optional;
 public class DoctorService {
 
 
-    private final List<Doctor> doctors = new ArrayList<>();
+    private final List<Doctor> allDoctors = new ArrayList<>();
 
 
     public String getVaccinationsPerDoctor(Doctor doctor) {
@@ -33,7 +33,7 @@ public class DoctorService {
         if (findDoctorByAmka(amka) == null) {
             if (InputValidator.checkAmka(amka)) {
                 Doctor doctor = new Doctor(amka, firstName, lastName);
-                doctors.add(doctor);
+                allDoctors.add(doctor);
             } else {
                 System.err.println("Please provide a right amka.");
             }
@@ -44,7 +44,7 @@ public class DoctorService {
 
     public String getVaccinationsOfAllDoctors() {
         String str = "---------VACCINATIONS OF ALL DOCTORS---------\n";
-        for (Doctor d : doctors) {
+        for (Doctor d : allDoctors) {
             str += getVaccinationsPerDoctor(d);
         }
         return str;
@@ -52,7 +52,7 @@ public class DoctorService {
 
     public Doctor findDoctorByAmka(String amka) {
         Doctor foundDoctor = null;
-        Optional<Doctor> doctor = doctors.stream()
+        Optional<Doctor> doctor = allDoctors.stream()
                 .filter(e -> e.getAmka().equals(amka)).findFirst();
         if (doctor.isPresent()) {
             foundDoctor = doctor.get();

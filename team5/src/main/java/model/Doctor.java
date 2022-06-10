@@ -6,7 +6,7 @@ import utilities.InputValidator;
 import java.util.*;
 
 public class Doctor {
-    //Doctor (amka, name, surname, Timeslots)
+
     private String amka;
     private String name;
     private String surname;

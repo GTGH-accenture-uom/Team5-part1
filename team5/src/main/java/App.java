@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -50,7 +51,6 @@ public class App {
         //timeslots for vaccination center1
         Timeslot timeslot1center1 = new Timeslot(LocalDateTime.of(2022, 6, 23, 18, 30), 20);
         doctorService.addTimeslotToDoctor("12345678912", timeslot1center1);
-
 
         Timeslot timeslot2center1 = new Timeslot(timeslot1center1.getEndDateTime(), 15);
         doctorService.addTimeslotToDoctor("12345678912", timeslot2center1);
@@ -117,18 +117,17 @@ public class App {
         List<Timeslot> timeslotListCenter2 = Arrays.asList(timeslot1center2, timeslot2center2, timeslot3center2, timeslot4center2, timeslot5center2, timeslot6center2, timeslot7center2, timeslot8center2, timeslot9center2, timeslot10center2);
         vaccinationCenterService.addTimeslotsToVaccinationCenter(timeslotListCenter2, vaccCenter2);
 
-
         //Reservations for Center1
-        vaccinationCenterService.makeReservation(insured1, timeslot1center1, vaccCenter1);
-        vaccinationCenterService.makeReservation(insured2, timeslot2center1, vaccCenter1);
-        vaccinationCenterService.makeReservation(insured3, timeslot3center1, vaccCenter1);
-        vaccinationCenterService.makeReservation(insured4, timeslot4center1, vaccCenter1);
+        vaccinationCenterService.createReservation(insured1, timeslot1center1, vaccCenter1);
+        vaccinationCenterService.createReservation(insured2, timeslot2center1, vaccCenter1);
+        vaccinationCenterService.createReservation(insured3, timeslot3center1, vaccCenter1);
+        vaccinationCenterService.createReservation(insured4, timeslot4center1, vaccCenter1);
 
         //Reservations for Center2
-        vaccinationCenterService.makeReservation(insured5, timeslot1center2, vaccCenter2);
-        vaccinationCenterService.makeReservation(insured6, timeslot2center2, vaccCenter2);
-        vaccinationCenterService.makeReservation(insured7, timeslot3center2, vaccCenter2);
-        vaccinationCenterService.makeReservation(insured8, timeslot4center2, vaccCenter2);
+        vaccinationCenterService.createReservation(insured5, timeslot1center2, vaccCenter2);
+        vaccinationCenterService.createReservation(insured6, timeslot2center2, vaccCenter2);
+        vaccinationCenterService.createReservation(insured7, timeslot3center2, vaccCenter2);
+        vaccinationCenterService.createReservation(insured8, timeslot4center2, vaccCenter2);
 
         //vaccinations
         vaccinationCenterService.createVaccination("Pfizer", 2, insured1, vaccCenter1);
@@ -138,14 +137,11 @@ public class App {
         vaccinationCenterService.createVaccination("Pfizer", 2, insured5, vaccCenter2);
         vaccinationCenterService.createVaccination("Pfizer", 2, insured6, vaccCenter2);
 
-
         //requirements
         String totalRecords = "";
         //1st requirement
         totalRecords += vaccinationCenterService.getAllReservationsPerCenter();
-
         vaccinationCenterService.displayAllReservationsPerCenter();
-
 
         //2nd requirement
         totalRecords += vaccinationCenterService.getFreeTimeslotsByVaccinationCenter();
@@ -156,10 +152,11 @@ public class App {
         doctorService.displayVaccinationsOfAllDoctorsPerCenter();
 
         //4th requirement
-        List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();
+        List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getAllVaccinationCenters();
         insuredService.displayInsuredAbove60WhoDidntReserve(insuredList,vaccinationCenters);
-        totalRecords += insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters);
-
+        totalRecords += "\n---------INSURED >60YO WITHOUT RESERVATION---------\n" +
+                insuredService.getInsuredAbove60WhoDidntReserve(insuredList, vaccinationCenters).stream()
+                        .map(t -> t.getName()+ " " + t.getSurname() + " with afm :" + t.getAfm()).collect(Collectors.joining("\n"));
         RecordWriter.writeFile(totalRecords);
 
 
