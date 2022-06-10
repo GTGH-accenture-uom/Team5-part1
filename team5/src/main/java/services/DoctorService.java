@@ -43,9 +43,7 @@ public class DoctorService {
     }
 
     public String getVaccinationsOfAllDoctors() {
-        System.out.println("*************");
-        System.out.println(doctors);
-        String str = "Vaccdoctor:\n";
+        String str = "---------VACCINATIONS OF ALL DOCTORS---------\n";
         for (Doctor d : doctors) {
             str += getVaccinationsPerDoctor(d);
         }
@@ -68,7 +66,6 @@ public class DoctorService {
                 && !doctor.getTimeslots().contains(timeslot)) {
             doctor.addTimeslot(timeslot);
             timeslot.setDoctor(doctor);
-            System.out.println(doctor);
         } else {
             System.err.println("Timeslot can not be added");
         }

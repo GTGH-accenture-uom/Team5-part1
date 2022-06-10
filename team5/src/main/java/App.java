@@ -143,6 +143,7 @@ public class App {
         String totalRecords = "";
         //1st requirement
         totalRecords += vaccinationCenterService.getAllReservationsPerCenter();
+
         vaccinationCenterService.displayAllReservationsPerCenter();
 
 
@@ -153,7 +154,6 @@ public class App {
         //3rd requirement
         totalRecords += doctorService.getVaccinationsOfAllDoctors();
         doctorService.displayVaccinationsOfAllDoctorsPerCenter();
-
 
         //4th requirement
         List<VaccinationCenter> vaccinationCenters = vaccinationCenterService.getTotalVaccinationCenters();

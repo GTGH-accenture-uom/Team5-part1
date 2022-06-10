@@ -46,7 +46,6 @@ public class VaccinationCenterService {
             LocalDateTime startDateTime = foundReservation.getTimeslot().getStartDateTime();
             LocalDateTime expirationDate = startDateTime.plusYears(yearsToExpire);
             Vaccination vaccination = new Vaccination(brand, insuredToVaccinate, doctor, startDateTime, expirationDate);
-            System.out.println("Insured with afm " + insuredToVaccinate.getAfm() + " got vaccinated");
             //Add record of vaccination to vaccination center
             vaccinationCenter.addVaccination(vaccination);
             //Add vaccination in doctor's vaccinations list
@@ -58,7 +57,7 @@ public class VaccinationCenterService {
     }
 
     public String getAllReservationsPerCenter() {
-        String str = "All reservations per center\n";
+        String str = "---------All RERSERVATIONS PER CENTER---------\n";
         for (VaccinationCenter v : totalVaccinationCenters) {
             str += getReservations(v);
         }
@@ -66,7 +65,7 @@ public class VaccinationCenterService {
     }
 
     public String getReservations(VaccinationCenter vaccinationCenter) {
-        String str = "Reservations per Vaccination center\n";
+        String str = "";
         List<Reservation> reservations = vaccinationCenter.getReservations();
         if (!reservations.isEmpty()) {
             str += "---------Reservations of VaccinationCenter " + vaccinationCenter.getCode() + "---------\n";
@@ -82,7 +81,7 @@ public class VaccinationCenterService {
     }
 
     public String getFreeTimeslotsByVaccinationCenter() {
-        String str = "\nList of Free timeslots per Vaccination center:\n";
+        String str = "---------LIST OF FREE TIMESLOTS PER VACCINATION CENTER---------\n";
         for (VaccinationCenter vc : totalVaccinationCenters) {
             str += "Vaccination center no." + vc.getCode() + " has free timeslots: " + getFreeTimeslotsByVaccinationCenter(vc) + "\n";
         }
@@ -122,8 +121,8 @@ public class VaccinationCenterService {
     //1st requirement
     public void displayAllReservationsPerCenter(){
         System.out.println(getAllReservationsPerCenter());
-
     }
+
     //2st requirement
     public void displayFreeTimeslotsByVaccinationCenter(){
         System.out.println(getFreeTimeslotsByVaccinationCenter());

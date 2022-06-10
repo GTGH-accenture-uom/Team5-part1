@@ -41,7 +41,7 @@ public class InsuredService {
             System.out.println("--------INSURED ABOVE 60 WHO DIDNT RESERVE-------");
             insuredAbove60WhoDidntReserve.forEach(insured -> {
                 System.out.println((runCount.incrementAndGet()) + "-"
-                         + insured.getName() + " " + insured.getSurname() + " with afm " +  insured.getAfm() + " didn't reserve");
+                         + insured.getName() + " " + insured.getSurname() + " with afm " +  insured.getAfm());
             });
         } else {
             System.out.println("--------NO INSURED ABOVE 60 WHO DIDNT RESERVE FOUND-------");
