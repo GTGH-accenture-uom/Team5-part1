@@ -35,7 +35,7 @@ public class DoctorService {
                 Doctor doctor = new Doctor(amka, firstName, lastName);
                 doctors.add(doctor);
             } else {
-                System.err.println("Please provide a right amka");
+                System.err.println("Please provide a right amka.");
             }
         } else {
             System.err.println("This doctor with amka " + amka + " already exists");
